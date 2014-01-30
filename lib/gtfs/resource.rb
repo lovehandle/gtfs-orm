@@ -98,7 +98,7 @@ module GTFS
           @page = page
           return self
         else
-          return @page
+          @page
         end
       end
 
@@ -131,7 +131,7 @@ module GTFS
           match
         end
 
-        arr[ ((page - 1) * limit)...limit ] || []
+        arr[ ((page - 1) * limit)...(page * limit)] || []
       end
 
     end
