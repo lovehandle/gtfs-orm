@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'gtfs/version'
+require 'gtfs/orm/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "gtfs"
-  spec.version       = GTFS::VERSION
+  spec.name          = "gtfs-orm"
+  spec.version       = GTFS::ORM::VERSION
   spec.authors       = ["Ryan Closner"]
   spec.email         = ["ryan@ryanclosner.com"]
   spec.summary       = %q{GTFS -> Ruby Object Mapper}
@@ -19,14 +19,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   runtime_dependencies = {
-    'virtus'    => '~> 1.0.1'
+    'virtus' => '~> 1.0.1'
   }
 
   runtime_dependencies.each {|lib, version| spec.add_runtime_dependency(lib, version) }
 
   development_dependencies = {
     "bundler" => "~> 1.5",
-    "rake" => "~> 10.1.1"
+    "rake"    => "~> 10.1.1"
   }
 
   development_dependencies.each {|lib, version| spec.add_development_dependency(lib, version) }
