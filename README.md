@@ -47,37 +47,40 @@ GTFS ORM provides Ruby Object Mappings for the General Transit Feed Specificatio
 
 The Resource API was designed to mirror that of ActiveRecord. Common methods for returning and scoping a Collection (or returning a single Resource) will be familiar to users or Rails, and are implemented as follows:
 
-* Resource#first (returns the first instance of the collection)
-* Resource#last (returns the last instance of the collection)
-* Resource#all (returns the collection)
-* Resource#where (scopes the collection to resources where the specified conditions apply)
-* Resource#limit (limits the number of resources returned)
-* Resource#page (returns the next group of resources specified by limit)
+* **Resource#first** (returns the first instance of the collection)
+* **Resource#last** (returns the last instance of the collection)
+* **Resource#all** (returns the collection)
+* **Resource#where** (scopes the collection to resources where the specified conditions apply)
+* **Resource#limit** (limits the number of resources returned)
+* **Resource#page** (returns the next group of resources specified by limit)
 
 ## API Examples
 
 The Resource `GTFS::ORM::Agency` will be used for the following examples:
 
-Resource#first:
+**Resource#first**:
 
 ```ruby
 GTFS::ORM::Agency.first
 #=> #<GTFS::ORM::Agency:0x007f8d428f0418>
 ```
 
-Resource#last
+**Resource#last**:
+
 ```ruby
 GTFS::ORM::Agency.last
 #=> #<GTFS::ORM::Agency:0x007f8d428f0418>
 ```
 
-Resource#all
+**Resource#all**:
+
 ```ruby
 GTFS::ORM::Agency.all
 #=> [ #<GTFS::ORM::Agency:0x007f8d428f0418>, #<GTFS::ORM::Agency:0x006d8d4281fas98>... ]
 ```
 
-Resource#where
+**Resource#where**:
+
 ```ruby
 scope = GTFS::ORM::Agency.where(agency_id: 'METRO')
 #=> #<GTFS::ORM::Resource::Scope:0x007f8d42932098>
@@ -85,7 +88,8 @@ scope.all
 #=> [ #<GTFS::ORM::Agency:0x007f8d428f0418>, #<GTFS::ORM::Agency:0x006d8d4281fas98>... ]
 ```
 
-Resource#limit
+**Resource#limit**:
+
 ```ruby
 scope = GTFS::ORM::Agency.limit(2)
 #=> #<GTFS::ORM::Resource::Scope:0x007f8d42932098>
@@ -93,7 +97,8 @@ scope.all
 #=> [ #<GTFS::ORM::Agency:0x007f8d428f0418>, #<GTFS::ORM::Agency:0x006d8d4281fas98> ]
 ```
 
-Resource#page
+**Resource#page**:
+
 ```ruby
 scope = GTFS::ORM::Agency.page(2)
 #=> #<GTFS::ORM::Resource::Scope:0x007f8d42932098>
@@ -114,6 +119,14 @@ Once the path has been specified, Resources can be accessed in the following man
 ```
 GTFS::ORM::Route.limit(30).page(2).where(route_long_name: "Indios Verdes - Dr. Gálvez").all
 #=> [ #<GTFS::ORM::Route:0x007f8d429f0f70>, #<GTFS::ORM::Route:0x006d8d429f0f70>...]
+```
+
+Each resource also has a number of associations (as referenced in the GTFS spec linked to above):
+
+```
+agency = GTFS::ORM::Agency.first
+agency.routes.first
+#=> #<GTFS::ORM::Route:0x007f8d429f0f70>
 ```
 
 ## Contributing
