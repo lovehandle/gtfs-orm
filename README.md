@@ -1,9 +1,6 @@
-gtfs-osm
-========
-
 ## About
 
-gtfs-orm is a Ruby Object Mapper for the Google Transit Feed Specification
+A Ruby Object Mapper for the Google Transit Feed Specification
 
 ## Installation
 
