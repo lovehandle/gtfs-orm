@@ -77,8 +77,6 @@ GTFS::ORM::Agency.all
 #=> [ #<GTFS::ORM::Agency:0x007f8d428f0418>, #<GTFS::ORM::Agency:0x006d8d4281fas98>... ]
 ```
 
-Note: Collections are limited by default to return 20 resources at a time. The default limit can be modified by using the `limit` method.
-
 Resource#where
 ```ruby
 scope = GTFS::ORM::Agency.where(agency_id: 'METRO')

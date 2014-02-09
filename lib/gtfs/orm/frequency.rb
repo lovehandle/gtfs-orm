@@ -14,6 +14,12 @@ module GTFS
       attribute :headway_seconds, Integer
       attribute :exact_times, Integer
 
+      # INSTANCE METHODS
+
+      def trip
+        Trip.where(trip_id: trip_id)
+      end
+
     end
   end
 end

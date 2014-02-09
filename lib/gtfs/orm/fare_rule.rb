@@ -14,6 +14,24 @@ module GTFS
       attribute :destination_id, String
       attribute :contains_id, String
 
+      # INSTANCE METHODS
+
+      def fare_attributes
+        FareAttribute.where(fare_id: fare_id)
+      end
+
+      def route
+        Route.where(route_id: route_id)
+      end
+
+      def origins
+        Stop.where(zone_id: origin_id)
+      end
+
+      def destinations
+        Stop.where(zone_id: destination_id)
+      end
+
     end
   end
 end

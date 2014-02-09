@@ -12,6 +12,12 @@ module GTFS
       attribute :date, Date
       attribute :exception_type, Integer
 
+      # INSTANCE METHODS
+
+      def calendar
+        Calendar.where(service_id: service_id)
+      end
+
     end
   end
 end

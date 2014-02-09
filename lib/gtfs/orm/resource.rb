@@ -13,27 +13,31 @@ module GTFS
       # CLASS METHODS
 
       def self.page(page)
-        Scope.new(page)
+        scope.page(page)
       end
 
       def self.first
-        Scope.new(collection).first
+        scope.first
       end
 
       def self.last
-        Scope.new(collection).last
+        scope.last
       end
 
       def self.limit(max)
-        Scope.new(collection).limit(max)
+        scope.limit(max)
       end
 
       def self.all
-        Scope.new(collection).all
+        scope.all
       end
 
       def self.where(conditions)
-        Scope.new(collection).where(conditions)
+        scope.where(conditions)
+      end
+
+      def self.scope
+        Scope.new(collection)
       end
 
       private
@@ -59,9 +63,13 @@ module GTFS
 
       class Scope
 
+        # INCLUSIONS
+
+        include Enumerable
+
         # CONSTANTS
 
-        DEFAULT_LIMIT = 20.freeze
+        DEFAULT_LIMIT = nil.freeze
         DEFAULT_PAGE  = 1.freeze
         DEFAULT_CONDITIONS = {}.freeze
 
@@ -75,6 +83,18 @@ module GTFS
         end
 
         # INSTANCE METHODS
+
+        def to_s
+          "<##{self.class}:#{self.object_id.to_s(8)}>"
+        end
+
+        alias :inspect :to_s
+
+        def each
+          return to_enum unless block_given?
+          all.each {|resource| yield resource }
+          self
+        end
 
         def limit(limit = nil)
           if limit
@@ -103,6 +123,10 @@ module GTFS
           end
         end
 
+        def length
+          all.length
+        end
+
         def first
           all.first
         end
@@ -112,14 +136,6 @@ module GTFS
         end
 
         def all
-          scoped_collection
-        end
-
-        private
-
-        attr_reader :collection, :conditions
-
-        def scoped_collection
           arr = collection.select do |item|
             match = true
             if conditions
@@ -132,8 +148,17 @@ module GTFS
             match
           end
 
-          arr[ ((page - 1) * limit)...(page * limit)] || []
+          if limit
+            arr[ ((page - 1) * limit)...(page * limit)] || []
+          else
+            arr
+          end
+
         end
+
+        private
+
+        attr_reader :collection, :conditions
 
       end
 

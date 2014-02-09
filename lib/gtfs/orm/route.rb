@@ -18,6 +18,16 @@ module GTFS
       attribute :route_color, String
       attribute :route_text_color, String
 
+      # INSTANCE METHODS
+
+      def agency
+        Agency.where(agency_id: agency_id)
+      end
+
+      def trips
+        Trip.where(route_id: route_id)
+      end
+
     end
   end
 end

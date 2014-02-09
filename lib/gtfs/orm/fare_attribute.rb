@@ -15,6 +15,12 @@ module GTFS
       attribute :trqnsfers, Integer
       attribute :transfer_duration, Integer
 
+      # INSTANCE METHODS
+
+      def fare_rule
+        FareRule.where(fare_id: fare_id)
+      end
+
     end
   end
 end

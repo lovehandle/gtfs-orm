@@ -14,6 +14,12 @@ module GTFS
       attribute :shape_pt_sequence, Integer
       attribute :shape_dist_traveled, Float
 
+      # INSTANCE METHODS
+
+      def trips
+        Trip.where(shape_id: shape_id)
+      end
+
     end
   end
 end

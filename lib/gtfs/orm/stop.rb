@@ -21,6 +21,20 @@ module GTFS
       attribute :stop_timezone, String
       attribute :wheelchair_boarding, Integer
 
+      # INSTANCE METHODS
+
+      def stop_times
+        StopTime.where(stop_id: stop_id)
+      end
+
+      def transfers_from
+        Transfer.where(from_stop_id: stop_id)
+      end
+
+      def transfers_to
+        Transfer.where(to_stop_id: stop_id)
+      end
+
     end
   end
 end

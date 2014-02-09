@@ -18,6 +18,24 @@ module GTFS
       attribute :shape_id, Integer
       attribute :wheelchair_accessible, Boolean
 
+      # INSTANCE METHODS
+
+      def route
+        Route.where(route_id: route_id)
+      end
+
+      def calendar
+        Calendar.where(service_id: service_id)
+      end
+
+      def shape
+        Shape.where(shape_id: shape_id)
+      end
+
+      def stop_times
+        StopTime.where(trip_id: trip_id)
+      end
+
     end
   end
 end

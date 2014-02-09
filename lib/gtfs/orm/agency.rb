@@ -16,6 +16,12 @@ module GTFS
       attribute :agency_phone, String
       attribute :agency_fare_url, String
 
+      # INSTANCE METHODS
+
+      def routes
+        Route.where(agency_id: agency_id)
+      end
+
     end
   end
 end

@@ -8,7 +8,7 @@ module GTFS
 
       # ATTRIBUTES
 
-      attribute :trip_id, Integer
+      attribute :trip_id, String
       attribute :arrival_time, Time
       attribute :departure_time, Time
       attribute :stop_id, String
@@ -17,6 +17,16 @@ module GTFS
       attribute :pickup_type, Integer
       attribute :drop_off_type, Integer
       attribute :shape_dist_traveled, String
+
+      # INSTANCE METHODS
+
+      def stops
+        Stop.where(stop_id: stop_id)
+      end
+
+      def trip
+        Trip.where(trip_id: trip_id)
+      end
 
     end
   end

@@ -19,6 +19,16 @@ module GTFS
       attribute :start_date, Date
       attribute :end_date, Date
 
+      # INSTANCE METHODS
+
+      def trips
+        Trip.where(service_id: service_id)
+      end
+
+      def calendar_date
+        CalendarDate.where(service_id: service_id)
+      end
+
     end
   end
 end
