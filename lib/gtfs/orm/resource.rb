@@ -36,6 +36,14 @@ module GTFS
         scope.where(conditions)
       end
 
+      def self.length
+        scope.length
+      end
+
+      def self.count
+        scope.length
+      end
+
       def self.scope
         Scope.new(collection)
       end
