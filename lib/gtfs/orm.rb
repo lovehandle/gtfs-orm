@@ -15,7 +15,7 @@ module GTFS
     # CLASS METHODS
 
     def self.path=(path)
-      @path
+      @path = path
     end
 
     def self.path
