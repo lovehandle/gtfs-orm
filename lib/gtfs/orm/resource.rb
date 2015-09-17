@@ -59,12 +59,14 @@ module GTFS
       end
 
       def self.collection
-        unless @collection
+        # make sure we reload the data if the ORM.path changed
+        unless @collection && ORM.path == @last_path
           raise NonExistentResourceError unless File.exist?(file_path)
           @collection = []
           CSV.read(file_path, headers: true).map do |row|
             @collection << new( Hash[row.headers.zip(row.fields)] )
           end
+          @last_path = ORM.path.dup
         end
         @collection
       end
