@@ -9,8 +9,8 @@ module GTFS
       # ATTRIBUTES
 
       attribute :trip_id, String
-      attribute :arrival_time, Time
-      attribute :departure_time, Time
+      attribute :arrival_time, String
+      attribute :departure_time, String
       attribute :stop_id, String
       attribute :stop_sequence, Integer
       attribute :stop_headsign, String

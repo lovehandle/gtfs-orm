@@ -12,7 +12,7 @@ module GTFS
       attribute :price, Float
       attribute :currency_type, String
       attribute :payment_method, Integer
-      attribute :trqnsfers, Integer
+      attribute :transfers, Integer
       attribute :transfer_duration, Integer
 
       # INSTANCE METHODS
