@@ -9,7 +9,7 @@ module GTFS
       # ATTRIBUTES
 
       attribute :route_id, String
-      attribute :service_id, Integer
+      attribute :service_id, String
       attribute :trip_id, String
       attribute :trip_headsign, String
       attribute :trip_short_name, String
